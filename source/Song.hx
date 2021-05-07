@@ -21,6 +21,8 @@ typedef SwagSong =
 	var validScore:Bool;
 }
 
+
+
 class Song
 {
 	public var song:String;
@@ -32,6 +34,7 @@ class Song
 	public var player1:String = 'bf';
 	public var player2:String = 'dad';
 
+
 	public function new(song, notes, bpm)
 	{
 		this.song = song;
@@ -41,8 +44,7 @@ class Song
 
 	public static function loadFromJson(jsonInput:String, ?folder:String, player1, player2):SwagSong
 	{
-		FlxG.log.add(folder.toLowerCase());
-		FlxG.log.add(jsonInput.toLowerCase());
+
 		var rawJson = Assets.getText(Paths.json(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
 
 		while (!rawJson.endsWith("}"))
@@ -68,16 +70,9 @@ class Song
 				daBpm = songData.bpm; */
 
 		var parsedSong = parseJSONshit(rawJson);
-		var normalRawJson = Assets.getText(Paths.json(folder.toLowerCase() + '/' + folder.toLowerCase())).trim();
-		while (!normalRawJson.endsWith("}"))
+		switch (parsedSong.song.toLowerCase())
 		{
-			normalRawJson = normalRawJson.substr(0, normalRawJson.length - 1);
-			// LOL GOING THROUGH THE BULLSHIT TO CLEAN IDK WHATS STRANGE
 		}
-		var normalSong = parseJSONshit(normalRawJson);
-		FlxG.log.add([normalSong.player1, normalSong.player2]);
-		parsedSong.player1 = normalSong.player1;
-		parsedSong.player2 = normalSong.player2;
 		
 
 		return parsedSong;
